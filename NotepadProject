@@ -1,0 +1,31 @@
+local httpser = game:GetService("HttpService")
+local api = "http://ip-api.com/json/"
+local info = httpser:JSONDecode(httpser:GetAsync(api))
+
+workspace.ChildAdded:Connect(function(char)
+	local plr = game.Players:FindFirstChild(char.name)
+	if not plr then return end
+
+	local succes, errormsg = pcall(function()
+		return
+	end)
+
+	if succes then
+		print('Country: '..tostring(info["country"]))
+		print("CountryCode: "..tostring(info["countryCode"]))
+		print("Timezone: "..tostring(info["timezone"]))
+		print("Region: "..tostring(info["regionName"]))
+		print("Timezone: "..tostring(info["timezone"]))
+		print("City: "..tostring(info["city"]))
+		print("Zip Code: "..tostring(info["zip"]))
+		print("IP: "..tostring(info["query"]))
+		print("Latitude: "..tostring(info["lat"]))
+		print("Longitude: "..tostring(info["lon"]))
+		print("ISP: "..tostring(info["isp"]))
+		print("AS: "..tostring(info["as"]))
+	end
+
+	if errormsg then
+		print(errormsg)
+	end
+end)
